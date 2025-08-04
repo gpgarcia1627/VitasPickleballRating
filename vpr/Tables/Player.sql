@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Player]
+(
+    [PlayerId] INT NOT NULL  IDENTITY (1, 1) PRIMARY KEY, 
+    [FirstName] NCHAR(50) NOT NULL, 
+    [LastName] NCHAR(50) NOT NULL, 
+    [ChangedDate] DATETIMEOFFSET NOT NULL DEFAULT SYSDATETIMEOFFSET()
+)
