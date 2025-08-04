@@ -38,5 +38,5 @@ select  p.FirstName
     from PlayerGameStats pg
     join [vpr].[dbo].[Player] p on pg.PlayerId = p.PlayerId
     group by p.FirstName
-    order by 5 desc
+    order by 5 desc, 2 desc
 
