@@ -1,7 +1,20 @@
 ﻿
 select top 100 *
 from [vpr].[dbo].GameDetails gd
---where gd.PlayedDate < '2025-7-30'
+where gd.PlayedDate > '2025-8-21'
+order by gd.PlayedDate
+
+-- game summary
+select  gd.GameId
+        , gd.PlayedDate
+        , t1p1_FirstName = gd.team1_player1_FirstName
+        , t1p2_FirstName = gd.team1_player2_FirstName
+        , t1_Score = gd.team1_Score
+        , t2p1_FirstName = gd.team2_player1_FirstName
+        , t2p2_FirstName = gd.team2_player2_FirstName
+        , t2_Score = gd.team2_Score
+from [vpr].[dbo].GameDetails gd
+where gd.PlayedDate > '2025-8-21'
 order by gd.PlayedDate
 
 -- games played by each player
@@ -11,6 +24,7 @@ from [vpr].[dbo].[Player] p
 left join Team  t on t.PlayerIdOne = p.PlayerId or t.PlayerIdTwo = p.PlayerId
 left join Game  g on t.TeamId = g.TeamOneId or t.TeamId = g.TeamTwoId
 group by p.FirstName
+order by COUNT(g.GameId) desc, p.FirstName asc
 ;
 
 -- standings by player
